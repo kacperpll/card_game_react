@@ -6,17 +6,19 @@ import { getStarships } from "./services/services"
 function App() {
 
     const [starships, setStarships] = useState([])
+    const [url, setUrl] = useState("starships")
 
     const fetchStarshipsData = async () => {
-        const starshipsData = await getStarships()
+        const starshipsData = await getStarships(url)
 
-        setStarships(starshipsData.results)
-        console.log("starship", starshipsData)
+        setStarships([...starships, ...starshipsData.results])
+
+        if(starshipsData.next !== null) setUrl(starshipsData.next.substring(21))
     }
 
     useEffect(() => {
         fetchStarshipsData()
-    }, [])
+    }, [url])
 
     return (
         <div className="App">
