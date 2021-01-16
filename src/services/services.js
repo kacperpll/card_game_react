@@ -1,9 +1,9 @@
 import $api from "./domain"
 
-export const getStarships = async () => {
+export const getStarships = async (url) => {
     const responsesData = await $api({
         method: "get",
-        url: "starships"
+        url: url
     })
 
     return responsesData.data
