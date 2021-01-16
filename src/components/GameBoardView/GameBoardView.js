@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import GameCard from "./GameCard/GameCard"
+import * as data from "../../mockdata/starships.json"
 
 const GameBoardView = ({
     starships,
@@ -7,15 +8,19 @@ const GameBoardView = ({
 
     const [cards, setCards] = useState([])
 
-    useEffect(() => {
-        const deafaultCards = starships.slice(0,2)
+    console.log("starships", starships)
 
-        setCards(deafaultCards)
-    }, [starships])
+    useEffect(() => {
+        setCards(data.starships)
+    }, [])
 
     return (
         <div>
-            <div>Game Board Title</div>
+            <div>
+                <p>Star wars</p>
+                <span>Black rebelion</span>
+            </div>
+
             <GameCard starship={cards[0]}/>
             <GameCard starship={cards[1]}/>
         </div>

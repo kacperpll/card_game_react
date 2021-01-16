@@ -1,38 +1,48 @@
 import React, { useEffect, useState } from "react"
-import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActions from "@material-ui/core/CardActions"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
+import CardMedia from "@material-ui/core/CardMedia"
+import CardHeader from "@material-ui/core/CardHeader"
 import Typography from "@material-ui/core/Typography"
+import IconButton from "@material-ui/core/IconButton"
+import MoreVertIcon from "@material-ui/icons/MoreVert"
+import { Avatar } from "@material-ui/core"
+import useStyles from "./GameCard.styles"
 
-
-const useStyles = makeStyles({
-    root: {
-        width: 275,
-    },
-    bullet: {
-        display: "inline-block",
-        margin: "0 2px",
-        transform: "scale(0.8)",
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
-    },
-});
 
 const GameCard = ({
     starship
 }) => {
 
-    const styles = useStyles()
-    console.log("starship card", starship)
+    const styles = useStyles({})
+    // console.log("starship card", starship)
 
     return (
         <Card className={styles.root}>
+            <Avatar className={styles.avatar}>
+                WW
+            </Avatar>
+            <CardHeader
+                avatar={
+                    <Avatar aria-label="recipe" className={styles.orange}>
+                        SW
+                    </Avatar>
+                }
+                action={
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                }
+                title="Shrimp and Chorizo Paella"
+                subheader="September 14, 2016"
+            />
+            <CardMedia
+                    className={styles.media}
+                    image="src/assets/images/Y-wing_small.png"
+                    title="Paella dish"
+            />
             <CardContent>
                 <Typography className={styles.title} color="textSecondary" gutterBottom>
                     Starship Card
