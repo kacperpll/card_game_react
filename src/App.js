@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { getStarships } from "./services/services"
 import GameBoardView from "./components/GameBoardView/GameBoardView"
+import * as data from "./mockdata/starships.json"
 
 function App() {
 
     const [starships, setStarships] = useState([])
+    const [cards, setCards] = useState(data.starships)
 
     const fetchStarshipsData = async (url) => {
         const starshipsData = await getStarships(url)
 
-        setStarships((prevStarships)=>([...prevStarships, ...starshipsData.results]))
+        setStarships((prevStarships) => ([...prevStarships, ...starshipsData.results]))
 
         if (starshipsData.next !== null) fetchStarshipsData(starshipsData.next.substring(21))
     }
@@ -21,7 +23,9 @@ function App() {
     return (
         <div>
             <GameBoardView
-                starships={starships} />
+                starships={starships}
+                cards={cards}
+                setCards={setCards} />
         </div>
     )
 }

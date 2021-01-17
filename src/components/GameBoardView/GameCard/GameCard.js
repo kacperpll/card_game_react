@@ -17,13 +17,10 @@ const GameCard = ({
 }) => {
 
     const styles = useStyles({})
-    // console.log("starship card", starship)
+    // console.log("starship", starship)
 
     return (
         <Card className={styles.root}>
-            <Avatar className={styles.avatar}>
-                WW
-            </Avatar>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={styles.orange}>
@@ -53,6 +50,9 @@ const GameCard = ({
                     </Typography>
                     <Typography variant="h5" component="h3">
                         Price: {starship?.cost_in_credits}
+                    </Typography>
+                    <Typography variant="h5" component="h3">
+                        Id: {starship?.url?.substring(31).replace("/", "")}
                     </Typography>
                 </CardActionArea>
             </CardContent>

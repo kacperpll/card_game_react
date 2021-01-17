@@ -4,7 +4,8 @@ import { deepOrange } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: 275,
+        width: 300,
+        margin: 10,
     },
     bullet: {
         display: "inline-block",
