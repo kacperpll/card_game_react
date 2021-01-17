@@ -22,11 +22,8 @@ const GameCard = ({
         <Card className={styles.root}>
             <CardHeader
                 avatar={
-                    <Avatar
-                        aria-label="recipe"
-                        className={styles.purple}
-                        data-testid="avatar">
-                        {starships[id]?.name[0]?.toUpperCase()}
+                    <Avatar aria-label="recipe" className={styles.purple}>
+                        {starships[id]?.name[0].toUpperCase()}
                     </Avatar>
                 }
                 title={starships[id]?.name}
@@ -41,7 +38,7 @@ const GameCard = ({
                     Stats
                 </Typography>
                 <CardActionArea>
-                    <Typography variant="h5" component="h3" data-testid="price">
+                    <Typography variant="h5" component="h3">
                         Price: {starships[id]?.cost_in_credits}
                     </Typography>
                     <Typography variant="h5" component="h3">
