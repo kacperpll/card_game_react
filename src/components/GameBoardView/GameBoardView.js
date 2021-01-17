@@ -33,6 +33,7 @@ const GameBoardView = ({
         }
 
         const result = battleResult(score, cards)
+        console.log("result", result)
         setBattleScore(result.battleResult)
         setScore({...result.newScore})
     }, [cards])
