@@ -1,6 +1,4 @@
 export const battleResult = (score, cards) => {
-    console.log("score", score)
-    console.log("cards", cards)
     let newScore = score
     let battleResult
     const firstCardValue = parseInt(cards[0]?.cost_in_credits) ? parseInt(cards[0]?.cost_in_credits) : 0
