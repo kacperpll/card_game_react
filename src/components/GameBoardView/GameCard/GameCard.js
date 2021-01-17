@@ -1,58 +1,63 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Card from "@material-ui/core/Card"
-import CardActions from "@material-ui/core/CardActions"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
 import CardHeader from "@material-ui/core/CardHeader"
 import Typography from "@material-ui/core/Typography"
-import IconButton from "@material-ui/core/IconButton"
-import MoreVertIcon from "@material-ui/icons/MoreVert"
 import { Avatar } from "@material-ui/core"
 import useStyles from "./GameCard.styles"
+import starshipImage1 from "../../../assets/images/1.png"
+import starshipImage0 from "../../../assets/images/0.png"
 
 
 const GameCard = ({
-    starship
+    starships,
+    id,
 }) => {
 
     const styles = useStyles({})
-    // console.log("starship", starship)
 
     return (
         <Card className={styles.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={styles.orange}>
-                        SW
+                    <Avatar aria-label="recipe" className={styles.purple}>
+                        {starships[id]?.name[0].toUpperCase()}
                     </Avatar>
                 }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title={starships[id]?.name}
             />
             <CardMedia
                     className={styles.media}
-                    image="src/assets/images/Y-wing_small.png"
-                    title="Paella dish"
+                    image={id ? starshipImage1 : starshipImage0}
+                    title="Starship"
             />
             <CardContent>
-                <Typography className={styles.title} color="textSecondary" gutterBottom>
-                    Starship Card
+                <Typography className={styles.title} gutterBottom>
+                    Stats
                 </Typography>
                 <CardActionArea>
                     <Typography variant="h5" component="h3">
-                        Name: {starship?.name}
+                        Price: {starships[id]?.cost_in_credits}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Price: {starship?.cost_in_credits}
+                        Capacity: {starships[id]?.cargo_capacity}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Id: {starship?.url?.substring(31).replace("/", "")}
+                        Crew: {starships[id]?.crew}
+                    </Typography>
+                    <Typography variant="h5" component="h3">
+                        MGLT: {starships[id]?.MGLT}
+                    </Typography>
+                    <Typography variant="h5" component="h3">
+                        Spped: {starships[id]?.max_atmosphering_speed}
+                    </Typography>
+                    <Typography variant="h5" component="h3">
+                        Class: {starships[id]?.starship_class}
+                    </Typography>
+                    <Typography variant="h5" component="h3">
+                        Id: {starships[id]?.url?.substring(31).replace("/", "")}
                     </Typography>
                 </CardActionArea>
             </CardContent>

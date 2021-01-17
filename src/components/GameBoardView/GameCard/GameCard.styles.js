@@ -1,33 +1,23 @@
 import { makeStyles } from "@material-ui/core"
-import { red } from "@material-ui/core/colors"
-import { deepOrange } from '@material-ui/core/colors'
+import { deepPurple } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: 300,
+        width: 400,
         margin: 10,
-    },
-    bullet: {
-        display: "inline-block",
-        margin: "0 2px",
-        transform: "scale(0.8)",
+        backgroundColor: "#201d1dbf",
+        color: theme.palette.getContrastText(deepPurple[500]),
     },
     title: {
-        fontSize: 14,
-    },
-    pos: {
-        marginBottom: 12,
+        fontSize: 16,
     },
     media: {
         height: 0,
         paddingTop: "56.25%", // 16:9
+        backgroundSize: "contain",
     },
-    avatar: {
-        backgroundColor: red[500],
-    },
-    orange: {
-        color: theme.palette.getContrastText(deepOrange[500]),
-        backgroundColor: deepOrange[500],
+    purple: {
+        backgroundColor: deepPurple[500],
     },
 }))
 

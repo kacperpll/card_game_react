@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import GameCard from "./GameCard/GameCard"
 import Button from "@material-ui/core/Button"
 import useStyles from "./GameBoardView.styles"
 import {
-    battleResult
+    battleResult,
+    newStarships,
 } from "../../functions/functions.js"
 
 const GameBoardView = ({
@@ -12,56 +13,53 @@ const GameBoardView = ({
     setCards,
 }) => {
 
-    const styles = useStyles({})
-
+    const [battleScore, setBattleScore] = useState("")
     const [score, setScore] = useState({
         firstCard: 0,
         secondCard: 0,
     })
 
-    const newStarships = (starships) => {
-        const starshipsAmount = starships.length
-        let newStarships = []
-        for (let i = 0; i < 2; i++) {
-            const randomNum = Math.floor(Math.random() * starshipsAmount) + 1
-            newStarships = [...newStarships, starships[randomNum]]
-        }
-
-        setCards([...newStarships])
-    }
+    const styles = useStyles({})
+    const isFirstRun = useRef(true)
 
     const battleHandler = () => {
-        newStarships(starships)
-        console.log("cards", cards)
-        setScore(() => battleResult(score, cards))
+        newStarships(starships, score, setCards)
     }
+
     useEffect(() => {
-    }, [])
+        if (isFirstRun.current) {
+            isFirstRun.current = false
+            return
+        }
+
+        const result = battleResult(score, cards)
+        setBattleScore(result.battleResult)
+        setScore({...result.newScore})
+    }, [cards])
 
     return (
         <div>
-            <div className={styles.titleWrapper}>
+            <div className={styles.wrapper}>
                 <p>Star wars</p>
                 <span>Black rebelion</span>
-                <span>{cards[0].name}</span>
             </div>
 
-            <div className={styles.cardsWrapper}>
-                <GameCard starship={cards[0]}/>
-                <GameCard starship={cards[1]}/>
+            <div className={styles.wrapper}>
+                {Object.keys(score).map((item, index) => (
+                    <GameCard key={index} id={index} starships={cards}/>
+                ))}
             </div>
 
-            <div className={styles.buttonWrapper}>
+            <div className={styles.scoreWrapper}>
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => {battleHandler()}}>
+                    onClick={battleHandler}>
                     Fight
                 </Button>
-            </div>
-            <div className={styles.scoreWrapper}>
                 <span>Score</span>
                 <span>Left: {score.firstCard} - Right: {score.secondCard}</span>
+                {battleScore && <span>Winner: {battleScore}</span>}
             </div>
         </div>
     )
