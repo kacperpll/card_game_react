@@ -1,25 +1,37 @@
-import logo from './logo.svg'
-import './App.css'
+import React, { useEffect, useState } from "react"
+import { getStarships } from "./services/services"
+import GameBoardView from "./components/GameBoardView/GameBoardView"
+import * as data from "./mockdata/starships.json"
+import useStyles from "./App.styles"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+
+    const [starships, setStarships] = useState([])
+    const [cards, setCards] = useState(data.starships)
+
+    const styles = useStyles({})
+
+    const fetchStarshipsData = async (url) => {
+        const starshipsData = await getStarships(url)
+
+        setStarships((prevStarships) => ([...prevStarships, ...starshipsData.results]))
+
+        if (starshipsData.next !== null) fetchStarshipsData(starshipsData.next.substring(21))
+    }
+
+    useEffect(() => {
+        fetchStarshipsData("starships")
+    }, [])
+
+    return (
+        <div
+            className={styles.root}>
+            <GameBoardView
+                starships={starships}
+                cards={cards}
+                setCards={setCards} />
+        </div>
+    )
 }
 
 export default App
