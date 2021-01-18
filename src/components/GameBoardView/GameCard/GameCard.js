@@ -54,7 +54,7 @@ const GameCard = ({
                         MGLT: {starships[id]?.MGLT}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Spped: {starships[id]?.max_atmosphering_speed}
+                        Speed: {starships[id]?.max_atmosphering_speed}
                     </Typography>
                     <Typography variant="h5" component="h3">
                         Class: {starships[id]?.starship_class}

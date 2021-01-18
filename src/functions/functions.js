@@ -1,8 +1,8 @@
-export const battleResult = (score, cards) => {
+export const battleResult = (score, cards, battleOption) => {
     let newScore = score
     let battleResult
-    const firstCardValue = parseInt(cards[0]?.cost_in_credits) ? parseInt(cards[0]?.cost_in_credits) : 0
-    const secondCardValue = parseInt(cards[1]?.cost_in_credits) ? parseInt(cards[1]?.cost_in_credits) : 0
+    const firstCardValue = parseInt(cards[0][battleOption]) ? parseInt(cards[0][battleOption]) : 0
+    const secondCardValue = parseInt(cards[1][battleOption]) ? parseInt(cards[1][battleOption]) : 0
 
     if (firstCardValue === secondCardValue) {
         newScore.firstCard = newScore.firstCard + 1
