@@ -1,3 +1,5 @@
+import { randomNum } from "./helpers"
+
 export const battleResult = (score, cards, battleOption) => {
     let newScore = score
     let battleResult
@@ -25,5 +27,3 @@ export const newStarships = (starships, score, setCards) => {
 
     setCards(newStarships)
 }
-
-export const randomNum = (amount) => Math.floor(Math.random() * amount)

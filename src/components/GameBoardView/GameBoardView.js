@@ -27,7 +27,7 @@ const GameBoardView = ({
     const styles = useStyles({})
     const isFirstRun = useRef(true)
 
-    const battleHandler = () => {
+    const newBattle = () => {
         newStarships(starships, score, setCards)
     }
 
@@ -65,7 +65,7 @@ const GameBoardView = ({
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={battleHandler}>
+                        onClick={newBattle}>
                         Fight
                     </Button>
                     <FormControl variant="filled" className={styles.formControl}>
