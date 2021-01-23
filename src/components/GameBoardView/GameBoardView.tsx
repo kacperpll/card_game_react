@@ -10,16 +10,17 @@ import {
     battleResult,
     newStarships,
 } from "../../helpers/gameBoardFunctions"
+import { IGameBoardView, IScore } from "../../models/starships"
 
 const GameBoardView = ({
     starships,
     cards,
     setCards,
-}) => {
+}: IGameBoardView) => {
 
-    const [battleScore, setBattleScore] = useState("")
-    const [battleOption, setBattleOption] = useState("cost_in_credits")
-    const [score, setScore] = useState({
+    const [battleScore, setBattleScore]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("")
+    const [battleOption, setBattleOption]: [string, React.Dispatch<React.SetStateAction<string>>] = useState("cost_in_credits")
+    const [score, setScore]: [IScore, React.Dispatch<React.SetStateAction<IScore>>] = useState({
         firstCard: 0,
         secondCard: 0,
     })
@@ -27,11 +28,11 @@ const GameBoardView = ({
     const styles = useStyles({})
     const isFirstRun = useRef(true)
 
-    const newBattle = () => {
+    const newBattle = (): void => {
         newStarships(starships, score, setCards)
     }
 
-    const handleChange = (event) => {
+    const handleChange = (event: any) => {
         setBattleOption(event.target.value);
     }
 
