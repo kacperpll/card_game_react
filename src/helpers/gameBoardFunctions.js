@@ -1,4 +1,4 @@
-import { randomNum } from "./helpers"
+import { randomNum } from "./smallFunctions"
 
 export const battleResult = (score, cards, battleOption) => {
     let newScore = score

@@ -9,6 +9,7 @@ import { Avatar } from "@material-ui/core"
 import useStyles from "./GameCard.styles"
 import starshipImage1 from "../../../assets/images/1.png"
 import starshipImage0 from "../../../assets/images/0.png"
+import { checkIfExist } from "../../../helpers/smallFunctions"
 
 
 const GameCard = ({
@@ -26,10 +27,10 @@ const GameCard = ({
                         aria-label="recipe"
                         className={styles.purple}
                         data-testid="avatar">
-                        {starships[id]?.name[0]?.toUpperCase()}
+                        {checkIfExist(starships[id].name)[0].toUpperCase()}
                     </Avatar>
                 }
-                title={starships[id]?.name}
+                title={checkIfExist(starships[id].name)}
             />
             <CardMedia
                     className={styles.media}
@@ -42,25 +43,25 @@ const GameCard = ({
                 </Typography>
                 <CardActionArea>
                     <Typography variant="h5" component="h3" data-testid="price">
-                        Price: {starships[id]?.cost_in_credits}
+                        Price: {checkIfExist(starships[id].cost_in_credits)}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Capacity: {starships[id]?.cargo_capacity}
+                        Capacity: {checkIfExist(starships[id].cargo_capacity)}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Crew: {starships[id]?.crew}
+                        Crew: {checkIfExist(starships[id].crew)}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        MGLT: {starships[id]?.MGLT}
+                        MGLT: {checkIfExist(starships[id].MGLT)}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Speed: {starships[id]?.max_atmosphering_speed}
+                        Speed: {checkIfExist(starships[id].max_atmosphering_speed)}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Class: {starships[id]?.starship_class}
+                        Class: {starships[id].starship_class || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Id: {starships[id]?.url?.substring(31).replace("/", "")}
+                        Id: {checkIfExist(starships[id].url).substring(31).replace("/", "")}
                     </Typography>
                 </CardActionArea>
             </CardContent>

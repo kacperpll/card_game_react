@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { getStarships } from "./services/services"
-import { extractPathFromUrl } from "./functions/helpers"
+import { extractPathFromUrl } from "./helpers/smallFunctions"
 import GameBoardView from "./components/GameBoardView/GameBoardView"
 import * as data from "./mockdata/starships.json"
 import useStyles from "./App.styles"
@@ -15,14 +15,14 @@ function App() {
     useEffect(() => {
         const fetchStarshipsData = async (url) => {
             const starshipsData = await getStarships(url)
-
             setStarships((prevStarships) => ([...prevStarships, ...starshipsData.results]))
 
             if (starshipsData.next !== null) fetchStarshipsData(extractPathFromUrl(starshipsData.next))
         }
 
-        fetchStarshipsData("starships")
+        fetchStarshipsData("")
     }, [])
+
 
     return (
         <div

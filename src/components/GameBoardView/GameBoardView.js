@@ -9,7 +9,7 @@ import useStyles from "./GameBoardView.styles"
 import {
     battleResult,
     newStarships,
-} from "../../functions/functions.js"
+} from "../../helpers/gameBoardFunctions"
 
 const GameBoardView = ({
     starships,
