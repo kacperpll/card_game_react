@@ -1,38 +1,37 @@
 import React, { useEffect, useState, useRef } from "react"
-import GameCard from "./GameCard/GameCard"
+import GameCard from "./components/GameCard/GameCard"
 import Button from "@material-ui/core/Button"
 import Select from "@material-ui/core/Select"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
 import InputLabel from "@material-ui/core/InputLabel"
 import useStyles from "./GameBoardView.styles"
-import {
-    battleResult,
-    newStarships,
-} from "../../functions/functions.js"
+import battleResult from "./helpers/battleResult"
+import newStarships from "./helpers/newStarships"
+import { IGameBoardView, IScore } from "../../models/GameBoardView.models"
 
-const GameBoardView = ({
+const GameBoardView: React.FC<IGameBoardView> = ({
     starships,
     cards,
     setCards,
 }) => {
 
-    const [battleScore, setBattleScore] = useState("")
-    const [battleOption, setBattleOption] = useState("cost_in_credits")
-    const [score, setScore] = useState({
+    const [battleScore, setBattleScore] = useState<string>("")
+    const [battleOption, setBattleOption] = useState<"cost_in_credits" | "cargo_capacity" | "max_atmosphering_speed">("cost_in_credits")
+    const [score, setScore] = useState<IScore>({
         firstCard: 0,
         secondCard: 0,
     })
 
     const styles = useStyles({})
-    const isFirstRun = useRef(true)
+    const isFirstRun = useRef<boolean>(true)
 
-    const battleHandler = () => {
+    const newBattle = (): void => {
         newStarships(starships, score, setCards)
     }
 
-    const handleChange = (event) => {
-        setBattleOption(event.target.value);
+    const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+        setBattleOption(event.target.value as "cost_in_credits" | "cargo_capacity" | "max_atmosphering_speed");
     }
 
     useEffect(() => {
@@ -65,7 +64,7 @@ const GameBoardView = ({
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={battleHandler}>
+                        onClick={newBattle}>
                         Fight
                     </Button>
                     <FormControl variant="filled" className={styles.formControl}>

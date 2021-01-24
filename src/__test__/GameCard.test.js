@@ -1,5 +1,5 @@
 import React from "react"
-import GameCard from "../components/GameBoardView/GameCard/GameCard"
+import GameCard from "../views/GameBoardView/components/GameCard/GameCard"
 import { render, cleanup } from "@testing-library/react"
 import "@testing-library/jest-dom"
 
