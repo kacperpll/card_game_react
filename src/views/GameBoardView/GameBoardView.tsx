@@ -5,10 +5,12 @@ import Select from "@material-ui/core/Select"
 import FormControl from "@material-ui/core/FormControl"
 import MenuItem from "@material-ui/core/MenuItem"
 import InputLabel from "@material-ui/core/InputLabel"
+import CardMedia from "@material-ui/core/CardMedia"
 import useStyles from "./GameBoardView.styles"
 import battleResult from "./helpers/battleResult"
 import newStarships from "./helpers/newStarships"
 import { IGameBoardView, IScore } from "../../models/GameBoardView.models"
+import logo from "../../assets/images/logo.svg"
 
 const GameBoardView: React.FC<IGameBoardView> = ({
     starships,
@@ -48,9 +50,12 @@ const GameBoardView: React.FC<IGameBoardView> = ({
 
     return (
         <div>
-            <div className={styles.wrapper}>
-                <p>Star wars</p>
-                <span>Black rebelion</span>
+            <div className={styles.logoWrapper} >
+                <CardMedia
+                    className={styles.logo}
+                        image={logo}
+                        title="Starship"
+                />
             </div>
 
             <div className={styles.wrapper}>

@@ -31,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
     colorWhite: {
         color: "white",
     },
+    logoWrapper: {
+        display: "flex",
+        paddingTop: 10,
+        minHeight: 80,
+    },
+    logo: {
+        width: "100%",
+        backgroundSize: "contain",
+    }
 }))
 
 export default useStyles
