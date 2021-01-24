@@ -67,6 +67,7 @@ const GameBoardView: React.FC<IGameBoardView> = ({
             <div className={styles.scoreWrapper}>
                 <div className={styles.actions}>
                     <Button
+                        data-testid="fightButton"
                         variant="contained"
                         color="primary"
                         onClick={newBattle}>
@@ -88,7 +89,7 @@ const GameBoardView: React.FC<IGameBoardView> = ({
                     </FormControl>
                 </div>
                 <span>Score</span>
-                <span>Left: {score.firstCard} - Right: {score.secondCard}</span>
+                <span data-testid="battleScore" id="tescik">Left: {score.firstCard} - Right: {score.secondCard}</span>
                 {battleScore && <span>Winner: {battleScore}</span>}
             </div>
         </div>
