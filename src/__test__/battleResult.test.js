@@ -1,4 +1,4 @@
-import { battleResult } from "../functions/functions"
+import battleResult from "../views/GameBoardView/helpers/battleResult"
 import "@testing-library/jest-dom"
 
 test("Setting score", () => {
