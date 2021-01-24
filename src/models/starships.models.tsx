@@ -27,14 +27,3 @@ export interface IGetStarshipsResponse {
         results: IStarship[];
     }
 }
-
-export interface IGameBoardView {
-    starships: IStarship[];
-    cards: IStarship[];
-    setCards: React.Dispatch<React.SetStateAction<IStarship[]>>;
-}
-
-export interface IScore {
-    firstCard: number;
-    secondCard: number;
-}

@@ -7,12 +7,11 @@ import CardHeader from "@material-ui/core/CardHeader"
 import Typography from "@material-ui/core/Typography"
 import { Avatar } from "@material-ui/core"
 import useStyles from "./GameCard.styles"
-import starshipImage1 from "../../../assets/images/1.png"
-import starshipImage0 from "../../../assets/images/0.png"
-import { checkIfExist } from "../../../helpers/smallFunctions"
+import starshipImage1 from "../../../../assets/images/1.png"
+import starshipImage0 from "../../../../assets/images/0.png"
+import { IGameCard } from "../../../../models/GameBoardView.models"
 
-
-const GameCard = ({
+const GameCard: React.FC<IGameCard> = ({
     starships,
     id,
 }) => {
@@ -27,10 +26,10 @@ const GameCard = ({
                         aria-label="recipe"
                         className={styles.purple}
                         data-testid="avatar">
-                        {checkIfExist(starships[id].name)[0].toUpperCase()}
+                        {starships[id]?.name[0]?.toUpperCase() || "N"}
                     </Avatar>
                 }
-                title={checkIfExist(starships[id].name)}
+                title={starships[id]?.name || "No data"}
             />
             <CardMedia
                     className={styles.media}
@@ -43,25 +42,25 @@ const GameCard = ({
                 </Typography>
                 <CardActionArea>
                     <Typography variant="h5" component="h3" data-testid="price">
-                        Price: {checkIfExist(starships[id].cost_in_credits)}
+                        Price: {starships[id]?.cost_in_credits || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Capacity: {checkIfExist(starships[id].cargo_capacity)}
+                        Capacity: {starships[id]?.cargo_capacity || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Crew: {checkIfExist(starships[id].crew)}
+                        Crew: {starships[id]?.crew || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        MGLT: {checkIfExist(starships[id].MGLT)}
+                        MGLT: {starships[id]?.MGLT || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Speed: {checkIfExist(starships[id].max_atmosphering_speed)}
+                        Speed: {starships[id]?.max_atmosphering_speed || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Class: {starships[id].starship_class || "No data"}
+                        Class: {starships[id]?.starship_class || "No data"}
                     </Typography>
                     <Typography variant="h5" component="h3">
-                        Id: {checkIfExist(starships[id].url).substring(31).replace("/", "")}
+                        Id: {starships[id]?.url?.substring(31).replace("/", "") || "No data"}
                     </Typography>
                 </CardActionArea>
             </CardContent>
